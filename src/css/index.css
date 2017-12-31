@@ -1,0 +1,17 @@
+.nav-box {
+  float: left;
+  background: #242424;
+  border: none;
+}
+.nav-box li {
+  list-style: none;
+  color: #fff;
+  float: left;
+  line-height: 64px;
+  font-size: 16px;
+  margin-right: 10px;
+}
+.nav-box li a {
+  color: #fff;
+  text-decoration: none;
+}

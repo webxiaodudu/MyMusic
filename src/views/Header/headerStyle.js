@@ -1,6 +1,6 @@
 export const style= {
     header:{
-        background:'black',
+        background:'#242424',
         height:64
     },
     logo:{

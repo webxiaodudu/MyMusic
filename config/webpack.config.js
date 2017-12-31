@@ -50,7 +50,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.join(__dirname, '../public/index.html'),
       filename: 'index.html',
-      title: 'MakerResume'
+      title: 'MyMusic'
     }),
     new webpack.HotModuleReplacementPlugin()
   ],
