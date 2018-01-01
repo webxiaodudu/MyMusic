@@ -2,16 +2,37 @@
   float: left;
   background: #242424;
   border: none;
+  margin: 0;
 }
 .nav-box li {
   list-style: none;
-  color: #fff;
+  cursor: pointer;
   float: left;
   line-height: 64px;
-  font-size: 16px;
-  margin-right: 10px;
+  font-size: 14px;
+  padding: 0 15px;
 }
 .nav-box li a {
-  color: #fff;
+  color: #ccc;
   text-decoration: none;
+}
+.nav-box .active {
+  background: #000;
+}
+.nav-box .active a {
+  color: #fff;
+}
+.nav-right-box {
+  float: right;
+  height: 64px;
+  padding-right: 10px;
+  padding-top: 15px;
+}
+.nav-right-box .search {
+  display: inline-block;
+}
+.nav-right-box .loginMenu {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 3px  10px 0;
 }
