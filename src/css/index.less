@@ -4,10 +4,11 @@
     border:none;
     margin:0;
     li{
+        position:relative;
         list-style:none;
      cursor: pointer;
         float:left;
-       line-height:64px;
+       line-height:61px;
        font-size:14px;
        padding:0 15px;
        a{
@@ -15,7 +16,23 @@
            text-decoration: none;
          
        }
+       .hot{
+           width:28px;
+           height:19px;
+           position: absolute;
+           right:-7px;
+           top:6px;
+           background:url("../assets/topbar.png") no-repeat -192px 0;
+       }
         
+    }
+    .current{
+        position: absolute;
+        background:url("../assets/topbar.png")  no-repeat -226px 0;
+        width:12px;
+        height:6px;
+        bottom:0;
+        left:50%;
     }
     .active{
         background:#000;
@@ -41,4 +58,29 @@
         vertical-align: middle;
         margin:3px  10px 0;
     }
+}
+.subMenu-box{
+    background:#C20C0C;
+}
+.submenu{
+    width:1100px;
+
+    margin:0 auto;
+    .ant-menu-horizontal .ant-menu-item-active{
+        border:none;
+        color:#fff;
+    }
+
+    .ant-menu-horizontal > .ant-menu-item-selected, .ant-menu-horizontal > .ant-menu-submenu-selected{
+        border:none;
+        color:#fff;
+    }
+    .ant-menu{
+        background:transparent;
+    }
+   
+}
+.ant-menu-horizontal > .ant-menu-item{
+    border-bottom:none;
+    color:#fff;
 }

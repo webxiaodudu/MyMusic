@@ -33,7 +33,7 @@ class Header extends Component {
     }
 
     navOver(id){
-     
+     //鼠标悬停
             const navlist= this.state.navlist.map((item)=>{
                
                     if(item.id===id){
@@ -48,6 +48,7 @@ class Header extends Component {
 
     }
     navOut(id){
+        //鼠标移出
         const navlist= this.state.navlist.map((item)=>{
             
                  if(item.id===id&&!item.current){
@@ -58,8 +59,9 @@ class Header extends Component {
          this.setState({navlist});
     }
     navClick(id){
+       // 鼠标点击
         const navlist= this.state.navlist.map((item)=>{
-                    item.isActive=item.current=false
+                item.isActive=item.current=false
                  if(item.id===id){
                      item.isActive=item.current=true;
                      
@@ -69,21 +71,24 @@ class Header extends Component {
          });
          this.setState({navlist});
     }
+    
     render(){
         const navList=this.state.navlist.map((item)=>{
-            
+
             return <li key={item.id} className={item.isActive ? 'active' : ''}
                         onMouseOver={()=>this.navOver(item.id)} 
                         onMouseOut={()=>this.navOut(item.id)}
                         onClick={()=>this.navClick(item.id)}
                     >
+                        {item.current ? <i className="current"></i> : ''}                   
+                        {item.id===4 ? <i className="hot">hot</i> : ''}
                         <Link to='/'>{item.text}</Link>
                     </li>
         })
 
         return (
             <header style={style.header}>
-                <Row style={{height:64}}>
+                <Row style={{height:61}}>
                     <Col style={style.fullHeight} xxl={4} xl={5} lg={5} md={6} xs={24} sm={24}>
                         <h1 style={style.logo} >
                             <Icon type="youtube" style={{fontSize:38,color:'red',display:'inline-block',verticalAlign:'middle'}}/>
@@ -114,21 +119,6 @@ class Header extends Component {
                         </div>
                     </Col>
                     
-                </Row>
-                <Row  xxl={0} xl={0} lg={0} md={0} xs={24} sm={24}>
-                    <Col style={style.fullHeight} xxl={0} xl={0} lg={0} md={0} xs={24} sm={24}>
-                            <div style={{width:'100%',backgroundColor:'#242424',overflow:'hidden'}}>
-                                <ul className="nav-box" style={{float:'left'}}>
-                                    {navList}
-                                </ul>
-                                <div className="nav-right-box">
-                                    <Search className="search"
-                                        placeholder=""
-                                        onSearch={value => console.log(value)}
-                                        />
-                                </div>
-                            </div>
-                    </Col>
                 </Row>
             </header>
         )
