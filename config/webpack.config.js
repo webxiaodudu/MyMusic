@@ -57,12 +57,17 @@ module.exports = {
   devServer: {
     open:true,
     host: 'localhost',
-    port: '3000',
+    port: '8080',
     hot: true,
     stats:{
       errors: true
+    },
+    proxy: {
+      "*": {    //需要代理的路径
+        target: "http://localhost:3000",  //需要代理的域名
+        changeOrigin: true  //必须配置为true，才能正确代理
+      }
     }
-
   }
 };
 
