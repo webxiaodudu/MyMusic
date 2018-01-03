@@ -1,8 +1,16 @@
 import React ,{Component}from 'react';
 import  { Row, Col,Icon,Input,Button,Menu,Avatar,Dropdown} from 'antd';
-import {style} from './headerStyle'
-import {Link}from 'react-router-dom'
+import {connect} from 'react-redux';
+import{toggleSubmenu} from '../../redux/submenu.reducer'
+import {style} from './headerStyle';
+import {Link}from 'react-router-dom';
+import SubMenu from '../Submenu/Submenu';
 const {Search}=Input;
+
+@connect(
+    state=>state.submenuReducer,
+    {toggleSubmenu}
+)
 
 const logmenu=(
     <Menu style={{minWidth: 200} }>
@@ -12,7 +20,7 @@ const logmenu=(
         <Menu.Item><Icon type="weibo" />新浪微博登录</Menu.Item>
         <Menu.Item><Icon type="mail" />网移邮箱登陆</Menu.Item>
   </Menu>
-);
+)
 
 
 class Header extends Component {
@@ -21,12 +29,21 @@ class Header extends Component {
         super(props);
         this.state={
             navlist:[
-                {id:0,text:'我的音乐',isActive:true,current:true},
-                {id:1,text:'朋友', isActive:false,current:false},
-                {id:2,text:'商城', isActive:false,current:false},
-                {id:3,text:'音乐人', isActive:false,current:false},
-                {id:4,text:'下载客户端', isActive:false,current:false}
-            ]
+                {id:0,text:'发现音乐',isActive:true,current:true,to:'/',isSubMenu:true,sublist:[
+                  {id: 0,text:'推荐'},
+                  {id: 1,text:'排行榜'},
+                  {id: 2,text:'歌单'},
+                  {id: 3,text:'主播电台'},
+                  {id: 4,text:'歌手'},
+                  {id: 5,text:'新碟上架'}
+                ]},
+                {id:1,text:'我的音乐',isActive:false,current:false,to:'/MyMusic',isSubMenu:false,},
+                {id:2,text:'朋友', isActive:false,current:false,to:'/Friend',isSubMenu:false,},
+                {id:3,text:'商城', isActive:false,current:false,to:'/',isSubMenu:false,},
+                {id:4,text:'音乐人', isActive:false,current:false,to:'/',isSubMenu:false,},
+                {id:5,text:'下载客户端', isActive:false,current:false,to:'/',isSubMenu:false,}
+            ],
+            
             
            
         }
@@ -63,8 +80,7 @@ class Header extends Component {
         const navlist= this.state.navlist.map((item)=>{
                 item.isActive=item.current=false
                  if(item.id===id){
-                     item.isActive=item.current=true;
-                     
+                     item.isActive=item.current=true; 
 
                  }
                  return item
@@ -73,6 +89,7 @@ class Header extends Component {
     }
     
     render(){
+
         const navList=this.state.navlist.map((item)=>{
 
             return <li key={item.id} className={item.isActive ? 'active' : ''}
@@ -81,11 +98,12 @@ class Header extends Component {
                         onClick={()=>this.navClick(item.id)}
                     >
                         {item.current ? <i className="current"></i> : ''}                   
-                        {item.id===4 ? <i className="hot">hot</i> : ''}
-                        <Link to='/'>{item.text}</Link>
+                        {item.id===4 ? <i className="hot"></i> : ''}
+                        <Link to={item.to}>{item.text}</Link>
                     </li>
         })
 
+    
         return (
             <header style={style.header}>
                 <Row style={{height:61}}>
@@ -118,8 +136,8 @@ class Header extends Component {
                             </span>
                         </div>
                     </Col>
-                    
                 </Row>
+                 {this.props.submenuReducer.isShow?<SubMenu /> : ''}
             </header>
         )
     }
