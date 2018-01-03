@@ -4,8 +4,10 @@
     "react"
   ],
   "plugins": [
-    [ "transform-decorators-legacy", "transform-class-properties"],
-    ["react-hot-loader/babel"]
-  
+    [ "transform-decorators-legacy"],
+    [ "transform-class-properties"],
+    ["react-hot-loader/babel"],
+    ["transform-object-rest-spread"],
+    ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "css" }]
   ]
 }

@@ -7,7 +7,7 @@ const init={
 }
 
 export function submenuReducer(state=init,action){
-    
+   
     if(action.type==SHOW_SUBMENU){
         return {...state,isShow:true}
     }
@@ -18,12 +18,12 @@ export function submenuReducer(state=init,action){
     return state;
 }
 
+
 export function toggleSubmenu({isSubMenu}){
+   
+    return dispatch=>{
 
-    return (dispath)=>{
-
-        isSubMenu ? dispath({type:SHOW_SUBMENU}) : dispath({type:HIDE_SUBMENU})
-        
+        isSubMenu ? dispatch({type:SHOW_SUBMENU}) : dispatch({type:HIDE_SUBMENU})         
     }
 }
 

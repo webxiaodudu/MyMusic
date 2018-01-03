@@ -7,12 +7,8 @@ import {Link}from 'react-router-dom';
 import SubMenu from '../Submenu/Submenu';
 const {Search}=Input;
 
-@connect(
-    state=>state.submenuReducer,
-    {toggleSubmenu}
-)
 
-const logmenu=(
+const  logmenu=(
     <Menu style={{minWidth: 200} }>
         <Menu.Item> <Icon type="mobile" />手机号登录</Menu.Item>
         <Menu.Item><Icon type="wechat" />微信登录</Menu.Item>
@@ -21,6 +17,12 @@ const logmenu=(
         <Menu.Item><Icon type="mail" />网移邮箱登陆</Menu.Item>
   </Menu>
 )
+
+@connect(
+    state=>state.submenuReducer,
+    {toggleSubmenu}
+)
+
 
 
 class Header extends Component {
@@ -81,15 +83,16 @@ class Header extends Component {
                 item.isActive=item.current=false
                  if(item.id===id){
                      item.isActive=item.current=true; 
-
+                     this.props.toggleSubmenu(item);//发送切换子菜单action
                  }
                  return item
          });
          this.setState({navlist});
+         
     }
     
     render(){
-
+    
         const navList=this.state.navlist.map((item)=>{
 
             return <li key={item.id} className={item.isActive ? 'active' : ''}
@@ -137,7 +140,7 @@ class Header extends Component {
                         </div>
                     </Col>
                 </Row>
-                 {this.props.submenuReducer.isShow?<SubMenu /> : ''}
+                 { this.props.isShow ? <SubMenu /> : ''} 
             </header>
         )
     }
