@@ -1,3 +1,6 @@
+body {
+  background: #f5f5f5;
+}
 .nav-box {
   float: left;
   background: #242424;
@@ -75,4 +78,17 @@
 .ant-menu-horizontal > .ant-menu-item {
   border-bottom: none;
   color: #fff;
+}
+.ant-carousel .slick-slide {
+  text-align: center;
+  height: 160px;
+  line-height: 160px;
+  background: #364d79;
+  overflow: hidden;
+}
+.ant-carousel .slick-slide h3 {
+  color: #fff;
+}
+.b1 {
+  background: url("../assets/image/banner_01.jpg") no-repeat 0 0;
 }

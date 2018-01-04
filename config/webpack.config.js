@@ -2,6 +2,8 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+
+
 module.exports = {
   entry: {
     app: [
@@ -41,6 +43,7 @@ module.exports = {
             options: {
               limit: 8192
             }
+           
           }
         ]
       }
