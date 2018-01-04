@@ -109,15 +109,14 @@ class Header extends Component {
     
         return (
             <header style={style.header}>
-                <Row style={{height:61}}>
-                    <Col style={style.fullHeight} xxl={4} xl={5} lg={5} md={6} xs={24} sm={24}>
+                <Row style={{height:61,width:1100,margin:'0 auto'}}>
+                    <Col style={style.fullHeight} span={4} >
                         <h1 style={style.logo} >
                             <Icon type="youtube" style={{fontSize:38,color:'red',display:'inline-block',verticalAlign:'middle'}}/>
                             <span style={{height:'100%',display:'inline-block',marginLeft:10}}>MyMusic</span>
                         </h1>
-
                     </Col>
-                    <Col style={style.fullHeight} xxl={20} xl={19} lg={19} md={18} xs={0} sm={0}>
+                    <Col style={style.fullHeight} span={20}>
                         <ul className="nav-box">
                             {navList}
                         </ul>

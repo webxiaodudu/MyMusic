@@ -63,6 +63,9 @@ body {
   width: 1100px;
   margin: 0 auto;
 }
+.submenu .ant-menu-horizontal {
+  line-height: 32px;
+}
 .submenu .ant-menu-horizontal .ant-menu-item-active {
   border: none;
   color: #fff;
@@ -81,14 +84,16 @@ body {
 }
 .ant-carousel .slick-slide {
   text-align: center;
-  height: 160px;
-  line-height: 160px;
+  height: 336px;
+  line-height: 336px;
   background: #364d79;
   overflow: hidden;
 }
 .ant-carousel .slick-slide h3 {
   color: #fff;
 }
-.b1 {
-  background: url("../assets/image/banner_01.jpg") no-repeat 0 0;
+.down-box {
+  height: 336px;
+  width: 254px;
+  background: url("../assets/image/download.png") no-repeat 0 0;
 }
