@@ -9,6 +9,7 @@ body{
     li{
         position:relative;
         list-style:none;
+        color:#fff;
      cursor: pointer;
         float:left;
        line-height:61px;
@@ -106,4 +107,22 @@ body{
     height:336px;
     width:254px;
     background:url("../assets/image/download.png") no-repeat 0 0;
+}
+
+.ant-carousel  .slick-dots {
+    li{
+        border-radius: 50%;
+        width:10px;
+        height:10px;
+        background-color:rgb(241, 32, 32);
+        button{
+           display:none;
+        }
+    }
+    .slick-active{
+        background-color:#fff;
+        button{
+           display:none;
+        }
+    }
 }

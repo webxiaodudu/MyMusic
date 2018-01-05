@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
-import {   Row, Col,Carousel, Icon ,Button} from 'antd';
+import {Row, Col,Carousel, Icon ,Button} from 'antd';
 import banner_01 from '../../../assets/image/banner_01.jpg';
 import banner_02 from '../../../assets/image/banner_02.jpg';
 import banner_03 from '../../../assets/image/banner_03.jpg';
 import banner_04 from '../../../assets/image/banner_04.jpg';
 import downloadImg from '../../../assets/image/download.png';
 
-const images = [banner_01, banner_02, banner_03, banner_04];
-const bgcolors=['#f5f1ee','#e20001','#040507','#d9eafc'];
+const images = [{src:banner_01,color:'#f5f1ee'}, {src:banner_02,color:"#e20001"}, {src:banner_03,color:'#040507'}, {src:banner_04,color:'#d9eafc'}];
+//const bgcolors=['#f5f1ee','#e20001','#040507','#d9eafc'];
 
 const ImgsItem = images.map((item, i) => {
-    return <div key={new Date().getTime() + i}><img src={item} /></div>
+    return <div key={new Date().getTime() + i}><img src={item.src} /></div>
 })
 
 class LeftNavButton extends Component {
@@ -44,10 +44,10 @@ export class ForcusImg extends Component {
         super(props);
         this.state={
             
-            currentColor:bgcolors[0]
+            currentColor:images[0].color
         }
 
-        this.handleBefore=this.handleBefore.bind(this)
+        this.afterChange=this.afterChange.bind(this)
     }
     handleCarouselNext() {
         this.carouse.next()
@@ -56,10 +56,8 @@ export class ForcusImg extends Component {
         this.carouse.prev()
     }
 
-    handleBefore(index){
-        this.setState({currentColor:bgcolors[index]})
-  
-
+    afterChange(index){
+        this.setState({currentColor:images[index].color});
     }
     render(){
 
@@ -72,8 +70,9 @@ export class ForcusImg extends Component {
             prevArrow: <LeftNavButton onClick={this.handleCarouselPrev}/>,
             nextArrow:<RightNavButton  onClick={this.handleCarouselNext} /> ,
             adaptiveHeight:true,
-            beforeChange:this.handleBefore,
+            afterChange:this.afterChange,
             dots:true,
+            dotsClass:'slick-dots'
         }
 
         return (

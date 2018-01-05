@@ -10,6 +10,7 @@ body {
 .nav-box li {
   position: relative;
   list-style: none;
+  color: #fff;
   cursor: pointer;
   float: left;
   line-height: 61px;
@@ -96,4 +97,19 @@ body {
   height: 336px;
   width: 254px;
   background: url("../assets/image/download.png") no-repeat 0 0;
+}
+.ant-carousel .slick-dots li {
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  background-color: #f12020;
+}
+.ant-carousel .slick-dots li button {
+  display: none;
+}
+.ant-carousel .slick-dots .slick-active {
+  background-color: #fff;
+}
+.ant-carousel .slick-dots .slick-active button {
+  display: none;
 }

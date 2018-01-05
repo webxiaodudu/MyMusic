@@ -3,7 +3,8 @@ import  { Row, Col,Icon,Input,Button,Menu,Avatar,Dropdown} from 'antd';
 import {connect} from 'react-redux';
 import{toggleSubmenu} from '../../redux/submenu.reducer'
 import {style} from './headerStyle';
-import {Link}from 'react-router-dom';
+import {Link,withRouter}from 'react-router-dom';
+//import { withRouter } from 'react-router';
 import SubMenu from '../Submenu/Submenu';
 const {Search}=Input;
 
@@ -18,13 +19,13 @@ const  logmenu=(
   </Menu>
 )
 
+
+
 @connect(
     state=>state.submenuReducer,
     {toggleSubmenu}
 )
-
-
-
+@withRouter
 class Header extends Component {
 
     constructor(props){
@@ -77,7 +78,7 @@ class Header extends Component {
          });
          this.setState({navlist});
     }
-    navClick(id){
+    navClick(id,to){
        // 鼠标点击
         const navlist= this.state.navlist.map((item)=>{
                 item.isActive=item.current=false
@@ -88,6 +89,7 @@ class Header extends Component {
                  return item
          });
          this.setState({navlist});
+       this.props.history.push(to)
          
     }
     
@@ -98,11 +100,11 @@ class Header extends Component {
             return <li key={item.id} className={item.isActive ? 'active' : ''}
                         onMouseOver={()=>this.navOver(item.id)} 
                         onMouseOut={()=>this.navOut(item.id)}
-                        onClick={()=>this.navClick(item.id)}
+                        onClick={()=>this.navClick(item.id,item.to)}
                     >
                         {item.current ? <i className="current"></i> : ''}                   
                         {item.id===4 ? <i className="hot"></i> : ''}
-                        <Link to={item.to}>{item.text}</Link>
+                        {item.text}
                     </li>
         })
 
@@ -144,5 +146,6 @@ class Header extends Component {
         )
     }
 } 
+
 
 export default Header;
