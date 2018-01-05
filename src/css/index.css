@@ -1,6 +1,14 @@
 body {
   background: #f5f5f5;
 }
+.clearfix:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.clearfix {
+  zoom: 1;
+}
 .nav-box {
   float: left;
   background: #242424;
@@ -102,14 +110,61 @@ body {
   border-radius: 50%;
   width: 10px;
   height: 10px;
-  background-color: #f12020;
+  background-color: #ce4a29;
 }
 .ant-carousel .slick-dots li button {
   display: none;
 }
 .ant-carousel .slick-dots .slick-active {
   background-color: #fff;
+  border: 1px solid #C20C0C;
 }
 .ant-carousel .slick-dots .slick-active button {
   display: none;
+}
+.main-body {
+  width: 980px;
+  margin: 0 auto;
+}
+.left-box {
+  width: 689px;
+  padding: 20px 20px 40px;
+  border-left: 1px solid #dbdbdb;
+  float: left;
+}
+.right-box {
+  width: 250px;
+  border-left: 1px solid #dbdbdb;
+  border-right: 1px solid #dbdbdb;
+  float: right;
+}
+.box .title {
+  font-weight: normal;
+  font-size: 20px;
+  margin: 0;
+  line-height: 35px;
+  border-bottom: 2px solid #c10d0c;
+}
+.box .title-left {
+  float: left;
+}
+.box .link-list {
+  float: left;
+  padding-left: 10px;
+}
+.box .link-list a,
+.box .link-list i {
+  display: inline-block;
+  color: #666;
+  font-size: 12px;
+  padding: 0 5px;
+}
+.box .link-list i {
+  color: #ccc;
+}
+.box .more {
+  float: right;
+  color: #333;
+  font-size: 12px;
+  text-decoration: none;
 }

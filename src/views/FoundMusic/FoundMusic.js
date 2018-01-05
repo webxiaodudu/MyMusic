@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { ForcusImg} from './ForcusImg/ForcusImg'
+import {Route} from 'react-router-dom'
+import Recommend from './Recommend/Recommend'
 
 class FoundMusic extends Component {
     constructor(props) {
@@ -7,10 +8,11 @@ class FoundMusic extends Component {
        
     }
     render() {
+       let  {match}=this.props;
+       console.log(match.url)
         return (
-            <div>
-              <ForcusImg/>
-            </div>
+                 <Route exact path={`${match.url}/`} component={Recommend} />
+                 
             )
     }
 }

@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import {Row, Col,Carousel, Icon ,Button} from 'antd';
-import banner_01 from '../../../assets/image/banner_01.jpg';
-import banner_02 from '../../../assets/image/banner_02.jpg';
-import banner_03 from '../../../assets/image/banner_03.jpg';
-import banner_04 from '../../../assets/image/banner_04.jpg';
-import downloadImg from '../../../assets/image/download.png';
+import banner_01 from '../../../../assets/image/banner_01.jpg';
+import banner_02 from '../../../../assets/image/banner_02.jpg';
+import banner_03 from '../../../../assets/image/banner_03.jpg';
+import banner_04 from '../../../../assets/image/banner_04.jpg';
+import downloadImg from '../../../../assets/image/download.png';
 
 const images = [{src:banner_01,color:'#f5f1ee'}, {src:banner_02,color:"#e20001"}, {src:banner_03,color:'#040507'}, {src:banner_04,color:'#d9eafc'}];
-//const bgcolors=['#f5f1ee','#e20001','#040507','#d9eafc'];
+
 
 const ImgsItem = images.map((item, i) => {
     return <div key={new Date().getTime() + i}><img src={item.src} /></div>
@@ -47,7 +47,7 @@ export class ForcusImg extends Component {
             currentColor:images[0].color
         }
 
-        this.afterChange=this.afterChange.bind(this)
+        this.beforeChange=this.beforeChange.bind(this)
     }
     handleCarouselNext() {
         this.carouse.next()
@@ -56,8 +56,9 @@ export class ForcusImg extends Component {
         this.carouse.prev()
     }
 
-    afterChange(index){
-        this.setState({currentColor:images[index].color});
+    beforeChange(oldIndex,newIndex){
+    
+        this.setState({currentColor:images[newIndex].color});
     }
     render(){
 
@@ -70,7 +71,7 @@ export class ForcusImg extends Component {
             prevArrow: <LeftNavButton onClick={this.handleCarouselPrev}/>,
             nextArrow:<RightNavButton  onClick={this.handleCarouselNext} /> ,
             adaptiveHeight:true,
-            afterChange:this.afterChange,
+            beforeChange:this.beforeChange,
             dots:true,
             dotsClass:'slick-dots'
         }
