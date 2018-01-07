@@ -9,7 +9,7 @@ class FoundMusic extends Component {
     }
     render() {
        let  {match}=this.props;
-       console.log(match.url)
+     
         return (
                  <Route exact path={`${match.url}/`} component={Recommend} />
                  

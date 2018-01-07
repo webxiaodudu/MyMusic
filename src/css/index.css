@@ -168,3 +168,10 @@ body {
   font-size: 12px;
   text-decoration: none;
 }
+.loading {
+  height: 100%;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.05);
+  min-height: 300px;
+  line-height: 300px;
+}
