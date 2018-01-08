@@ -11,7 +11,7 @@ class HotRecommend extends Component{
         }
     }
     componentDidMount(){
-        axios.get('/top/playlist?limit=8&order=new')
+        axios.get('/top/playlist?limit=8&order=hot')
         .then((res)=>{
            
             const{playlists}=res.data
@@ -39,7 +39,7 @@ class HotRecommend extends Component{
                                     cover={<img src={item.coverImgUrl} />} 
                                     bordered={true} 
                                     actions={[<span><Icon type="customer-service" style={{color:'#c10d0c'}}/>{item.playCount}</span>, <Icon type="play-circle-o" style={{color:'#c10d0c'}} />]}>
-                                    <Meta description={(<a href='javascript:;'>{item.name}</a>)} />
+                                    <Meta description={(<a href='javascript:;'>{item.name}</a>)} style={{maxHeight:42}}/>
                                 </Card>
                             </Col>
                         )
@@ -71,73 +71,7 @@ class HotRecommend extends Component{
                 </h2>
 
                 <Row gutter={12}>
-
                         {getList(this.state.playlists)}
-                       
-                    {/* <Col span={6} style={{paddingTop:20}}>
-                        <Card  
-                            cover={<img src={defualtImg} />} 
-                            bordered={true} 
-                            actions={[<span><Icon type="customer-service" style={{color:'#c10d0c'}}/>300万</span>, <Icon type="play-circle-o" style={{color:'#c10d0c'}} />]}>
-                            <Meta description="This is the description" />
-                        </Card>
-                    </Col>
-                    <Col span={6} style={{paddingTop:20}}>
-                        <Card  
-                            cover={<img src={defualtImg} />} 
-                            bordered={true} 
-                            actions={[<span><Icon type="customer-service" style={{color:'#c10d0c'}}/>300万</span>, <Icon type="play-circle-o" style={{color:'#c10d0c'}} />]}>
-                            <Meta description="This is the description" />
-                        </Card>
-                    </Col>
-                    <Col span={6} style={{paddingTop:20}}>
-                        <Card  
-                            cover={<img src={defualtImg} />} 
-                            bordered={true} 
-                            actions={[<span><Icon type="customer-service" style={{color:'#c10d0c'}}/>300万</span>, <Icon type="play-circle-o" style={{color:'#c10d0c'}} />]}>
-                            <Meta description="This is the description" />
-                        </Card>
-                    </Col>
-                    <Col span={6} style={{paddingTop:20}}>
-                        <Card  
-                            cover={<img src={defualtImg} />} 
-                            bordered={true} 
-                            actions={[<span><Icon type="customer-service" style={{color:'#c10d0c'}}/>300万</span>, <Icon type="play-circle-o" style={{color:'#c10d0c'}} />]}>
-                            <Meta description="This is the description" />
-                        </Card>
-                    </Col>
-                    <Col span={6} style={{paddingTop:20}}>
-                        <Card  
-                            cover={<img src={defualtImg} />} 
-                            bordered={true} 
-                            actions={[<span><Icon type="customer-service" style={{color:'#c10d0c'}}/>300万</span>, <Icon type="play-circle-o" style={{color:'#c10d0c'}} />]}>
-                            <Meta description="This is the description" />
-                        </Card>
-                    </Col>
-                    <Col span={6} style={{paddingTop:20}}>
-                        <Card  
-                            cover={<img src={defualtImg} />} 
-                            bordered={true} 
-                            actions={[<span><Icon type="customer-service" style={{color:'#c10d0c'}}/>300万</span>, <Icon type="play-circle-o" style={{color:'#c10d0c'}} />]}>
-                            <Meta description="This is the description" />
-                        </Card>
-                    </Col>
-                    <Col span={6} style={{paddingTop:20}}>
-                        <Card  
-                            cover={<img src={defualtImg} />} 
-                            bordered={true} 
-                            actions={[<span><Icon type="customer-service" style={{color:'#c10d0c'}}/>300万</span>, <Icon type="play-circle-o" style={{color:'#c10d0c'}} />]}>
-                            <Meta description="This is the description" />
-                        </Card>
-                    </Col>
-                    <Col span={6} style={{paddingTop:20}}>
-                        <Card  
-                            cover={<img src={defualtImg} />} 
-                            bordered={true} 
-                            actions={[<span><Icon type="customer-service" style={{color:'#c10d0c'}}/>300万</span>, <Icon type="play-circle-o" style={{color:'#c10d0c'}} />]}>
-                            <Meta description="This is the description" />
-                        </Card>
-                    </Col> */}
                 </Row>
             </div>
         )

@@ -1,17 +1,8 @@
 import React, { Component } from 'react';
-import {Row, Col,Carousel, Icon ,Button} from 'antd';
-import banner_01 from '../../../../assets/image/banner_01.jpg';
-import banner_02 from '../../../../assets/image/banner_02.jpg';
-import banner_03 from '../../../../assets/image/banner_03.jpg';
-import banner_04 from '../../../../assets/image/banner_04.jpg';
+import {Row, Col,Carousel, Icon ,Button,Spin } from 'antd';
+import axios from 'axios';
 import downloadImg from '../../../../assets/image/download.png';
 
-const images = [{src:banner_01,color:'#f5f1ee'}, {src:banner_02,color:"#e20001"}, {src:banner_03,color:'#040507'}, {src:banner_04,color:'#d9eafc'}];
-
-
-const ImgsItem = images.map((item, i) => {
-    return <div key={new Date().getTime() + i}><img src={item.src} /></div>
-})
 
 class LeftNavButton extends Component {
     
@@ -43,8 +34,8 @@ export class ForcusImg extends Component {
     constructor(props){
         super(props);
         this.state={
-            
-            currentColor:images[0].color
+            banners:[],
+            currentColor:'red'
         }
 
         this.beforeChange=this.beforeChange.bind(this)
@@ -57,10 +48,31 @@ export class ForcusImg extends Component {
     }
 
     beforeChange(oldIndex,newIndex){
-    
-        this.setState({currentColor:images[newIndex].color});
+        const {banners} = this.state
+        this.setState({currentColor:banners[newIndex].titleColor});
     }
+    componentDidMount(){
+        axios.get('/banner').then((res)=>{
+               const {banners}=res.data;
+               this.setState({banners}) 
+
+        })
+    }
+   
+     
+
     render(){
+
+        const renderBanners=(banners)=>{
+  
+                    if(!banners.length)return (<div className="loading"><Spin /></div>);
+            
+                    const ImgsItem = banners.map((item, i) => {
+                         return <div key={item.targetId}><img src={item.pic} /></div>
+                    })
+                    return ImgsItem;
+            
+        }
 
         const settings={
         
@@ -82,7 +94,7 @@ export class ForcusImg extends Component {
                     <Col span={12}>
                         <div className="carousel-box">
                             <Carousel  {...settings} ref={(item) => (this.carouse = item)} >
-                                {ImgsItem}
+                                {renderBanners(this.state.banners)}
                             </Carousel>                            
                         </div>
                     </Col>
