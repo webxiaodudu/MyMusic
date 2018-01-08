@@ -58,21 +58,20 @@ export class ForcusImg extends Component {
 
         })
     }
-   
+   renderBanners(){
+    const {banners}=this.state
+    if(!banners.length)return (<div className="loading"><Spin /></div>);
+    
+            const ImgsItem = banners.map((item, i) => {
+                 return <div key={item.targetId}><img src={item.pic} /></div>
+            })
+            return ImgsItem;
+   }
      
 
     render(){
 
-        const renderBanners=(banners)=>{
-  
-                    if(!banners.length)return (<div className="loading"><Spin /></div>);
-            
-                    const ImgsItem = banners.map((item, i) => {
-                         return <div key={item.targetId}><img src={item.pic} /></div>
-                    })
-                    return ImgsItem;
-            
-        }
+        
 
         const settings={
         
@@ -94,12 +93,14 @@ export class ForcusImg extends Component {
                     <Col span={12}>
                         <div className="carousel-box">
                             <Carousel  {...settings} ref={(item) => (this.carouse = item)} >
-                                {renderBanners(this.state.banners)}
+                                {this.renderBanners()}
                             </Carousel>                            
                         </div>
                     </Col>
                     <Col span={4}>
-                       <div className="down-box"></div>
+                       <div className="down-box">
+                            
+                       </div>
                     </Col>
                 </Row>
             </div>

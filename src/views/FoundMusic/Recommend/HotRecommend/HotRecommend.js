@@ -21,6 +21,7 @@ class HotRecommend extends Component{
             console.log(erro)
         })
     }
+    
    
     render(){
 
@@ -53,7 +54,7 @@ class HotRecommend extends Component{
 
 
         return(
-            <div className="box">
+            <div className="box padd_b40">
                 <h2 className="title clearfix">
                     <span className="title-left"><Icon type="play-circle" style={{ fontSize: 12, color: '#c10d0c',marginRight:10 }} />热门推荐</span>
                     <span className="link-list">
