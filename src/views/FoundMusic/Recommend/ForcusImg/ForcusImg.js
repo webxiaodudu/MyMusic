@@ -90,7 +90,7 @@ export class ForcusImg extends Component {
         return (
             <div className="banner-box" style={{backgroundColor:this.state.currentColor}}>
                 <Row type="flex" justify="center">
-                    <Col span={12}>
+                    <Col span={16}>
                         <div className="carousel-box">
                             <Carousel  {...settings} ref={(item) => (this.carouse = item)} >
                                 {this.renderBanners()}
