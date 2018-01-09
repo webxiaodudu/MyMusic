@@ -120,76 +120,7 @@ class NewAlbum extends Component{
                     <Carousel {...settings} ref={(ref)=>{this.Carousel=ref}}>
 
                     {this.renderAlbums()}        
-                        {/* <div className="albumItem-box" style={{height:180,backgroundColor:'#dddddd'}}>
-                            <Row type="flex" justify="space-between">
-                           
-                                <Col span={4}>
-                                    <Card  
-                                        cover={<img src={defualtImg} height="100"/>} 
-                                        style={{ height: 180,width:110 }} 
-                                        
-                                    >
-                                    <Meta
-                                        title="Europe Street beat"
-                                        description="www.instagram.com"
-                                        style={{height:50,}}
-                                      />
-                                    </Card>
-                                </Col>
-                                <Col span={4}>
-                                    <Card  
-                                        cover={<img src={defualtImg} height="100"/>} 
-                                        style={{ height: 180,width:110 }} 
-                                        
-                                    >
-                                    <Meta
-                                        title="Europe Street beat"
-                                        description="www.instagram.com"
-                                        style={{height:50,}}
-                                      />
-                                    </Card>
-                                </Col>
-                                <Col span={4}>
-                                    <Card  
-                                        cover={<img src={defualtImg} height="100"/>} 
-                                        style={{ height: 180,width:110 }} 
-                                        
-                                    >
-                                    <Meta
-                                        title="Europe Street beat"
-                                        description="www.instagram.com"
-                                        style={{height:50,}}
-                                      />
-                                    </Card>
-                                </Col>
-                                <Col span={4}>
-                                    <Card  
-                                        cover={<img src={defualtImg} height="100"/>} 
-                                        style={{ height: 180,width:110 }} 
-                                        
-                                    >
-                                    <Meta
-                                        title="Europe Street beat"
-                                        description="www.instagram.com"
-                                        style={{height:50,}}
-                                      />
-                                    </Card>
-                                </Col>
-                                <Col span={4}>
-                                    <Card  
-                                        cover={<img src={defualtImg} height="100"/>} 
-                                        style={{ height: 180,width:110 }} 
-                                        
-                                    >
-                                    <Meta
-                                        title="Europe Street beat"
-                                        description="www.instagram.com"
-                                        style={{height:50,}}
-                                      />
-                                    </Card>
-                                </Col> 
-                            </Row>
-                        </div> */}
+                       
                     </Carousel>
                 </div>
             </div>
