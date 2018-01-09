@@ -10,9 +10,9 @@ class Recommend extends Component {
     }
     render() {
         return (
-            <div>
+            <div className="clearFix">
                 <ForcusImg/>
-                <div className="main-body clearFix">
+                <div className="main-body clearfix">
                     <div className="left-box">
                         <HotRecommend />
                         <NewAlbum />

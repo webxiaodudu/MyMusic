@@ -1,13 +1,21 @@
 body {
   background: #f5f5f5;
 }
+.footer {
+  border-top: 1px solid #dbdbdb;
+  word-spacing: 10px;
+  font-size: 12px;
+}
+.footer a {
+  color: #666;
+}
+.clearfix {
+  zoom: 1;
+}
 .clearfix:after {
   content: "";
   display: block;
   clear: both;
-}
-.clearfix {
-  zoom: 1;
 }
 .padd_b40 {
   padding-bottom: 40px;

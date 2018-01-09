@@ -66,11 +66,12 @@ class Billboard extends Component {
                             
                         </Card>
                         <List
+                         footer={<div><a href="javascript:;">查看全部></a></div>}
                         ref={(Biao)=>this.Biao=Biao}
                         size="small"
                         bordered
                         dataSource={this.state.biaoList} 
-                        renderItem={item => (<List.Item><span className={`num ${this.Biao.num<=3 ? 'bill-hot' : ''}`}>{this.Biao.num++}</span><span className="music-name">{item.name}</span><span className="user-pannal"><Icon type="play-circle-o" className="pannal-ico"/><Icon type="plus-circle-o" className="pannal-ico"/><Icon type="folder-add" className="pannal-ico"/></span></List.Item>)}
+                        renderItem={item => (<List.Item style={ { backgroundColor:!(this.Biao.num % 2) ? '#eee':'#fff' }}><span className={`num ${this.Biao.num<=3 ? 'bill-hot' : ''}`}>{this.Biao.num++}</span><span className="music-name">{item.name}</span><span className="user-pannal"><Icon type="play-circle-o" className="pannal-ico"/><Icon type="plus-circle-o" className="pannal-ico"/><Icon type="folder-add" className="pannal-ico"/></span></List.Item>)}
                         />
                     </Col>
                     <Col span={8}>
@@ -83,11 +84,12 @@ class Billboard extends Component {
                             
                         </Card>
                         <List
+                        footer={<div><a href="javascript:;">查看全部></a></div>}
                           ref={(newBill)=>this.newBill=newBill}
                         size="small"
                         bordered
                         dataSource={this.state.newList}
-                        renderItem={item => (<List.Item><span className={`num ${this.newBill.num<=3 ? 'bill-hot' : ''}`}>{this.newBill.num++}</span><span className="music-name">{item.name}</span><span className="user-pannal"><Icon type="play-circle-o" className="pannal-ico"/><Icon type="plus-circle-o" className="pannal-ico"/><Icon type="folder-add" className="pannal-ico"/></span></List.Item>)}
+                        renderItem={item => (<List.Item style={ { backgroundColor:!(this.newBill.num % 2) ? '#eee':'#fff' }}><span className={`num ${this.newBill.num<=3 ? 'bill-hot' : ''}`}>{this.newBill.num++}</span><span className="music-name">{item.name}</span><span className="user-pannal"><Icon type="play-circle-o" className="pannal-ico"/><Icon type="plus-circle-o" className="pannal-ico"/><Icon type="folder-add" className="pannal-ico"/></span></List.Item>)}
                         />
                     </Col>
                     <Col span={8}>
@@ -100,11 +102,12 @@ class Billboard extends Component {
                                 
                         </Card>
                         <List
+                        footer={<div><a href="javascript:;">查看全部></a></div>}
                         ref={(yuanBill)=>this.yuanBill=yuanBill}
                         size="small"
                         bordered
                         dataSource={this.state.yuanList}
-                        renderItem={item => (<List.Item><span className={`num ${this.yuanBill.num<=3 ? 'bill-hot' : ''}`}>{this.yuanBill.num++}</span><span className="music-name">{item.name}</span><span className="user-pannal"><Icon type="play-circle-o" className="pannal-ico"/><Icon type="plus-circle-o" className="pannal-ico"/><Icon type="folder-add" className="pannal-ico"/></span></List.Item>)}
+                        renderItem={item => (<List.Item style={ { backgroundColor:!(this.yuanBill.num % 2) ? '#eee':'#fff' }}><span className={`num ${this.yuanBill.num<=3 ? 'bill-hot' : ''}`}>{this.yuanBill.num++}</span><span className="music-name">{item.name}</span><span className="user-pannal"><Icon type="play-circle-o" className="pannal-ico"/><Icon type="plus-circle-o" className="pannal-ico"/><Icon type="folder-add" className="pannal-ico"/></span></List.Item>)}
                         />
                     </Col>
                 </Row>

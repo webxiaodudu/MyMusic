@@ -4,10 +4,12 @@ import {BrowserRouter,Route} from 'react-router-dom'
 import FoundMusic from './FoundMusic/FoundMusic'
 import MyMusic from './MyMusic/MyMusic'
 import Friend from './Friend/Friend'
+import Foot from './Footer/Footer'
 import {createStore,compose,applyMiddleware}from 'redux';
-import {Provider} from 'react-redux'
-import  reducers from '../redux/index.reducer'
-import thunk from 'redux-thunk'
+import {Provider} from 'react-redux';
+import  reducers from '../redux/index.reducer';
+import thunk from 'redux-thunk';
+
 const store=createStore(reducers,compose(
   applyMiddleware(thunk),
   window.devToolsExtension ? window.devToolsExtension() : compose
@@ -24,6 +26,7 @@ class App extends Component {
           <Route path='/' exact component={FoundMusic} />
           <Route path='/MyMusic' component={MyMusic} />
           <Route path='/Friend' component={Friend} />
+          <Foot/>
         </div>
       </BrowserRouter>
       </Provider>
