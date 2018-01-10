@@ -35,7 +35,7 @@ class HotRecommend extends Component{
                 
                     if(index<8){
                         return (
-                            <Col span={6} style={{paddingTop:20}} key={item.id}>
+                            <Col span={6} style={{paddingTop:10}} key={item.id}>
                                 <Card  
                                     cover={<img src={item.coverImgUrl} />} 
                                     bordered={true} 
@@ -71,7 +71,7 @@ class HotRecommend extends Component{
                     <a href="javascript:;" className="more">更多<Icon type="arrow-right"  style={{ fontSize: 12, color: '#c10d0c',marginRight:10 }}/></a>
                 </h2>
 
-                <Row gutter={12}>
+                <Row gutter={12} type="flex" justify="space-between" >
                         {getList(this.state.playlists)}
                 </Row>
             </div>

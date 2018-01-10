@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { ForcusImg} from './ForcusImg/ForcusImg';
 import HotRecommend from './HotRecommend/HotRecommend';
 import NewAlbum from './NewAlbum/NewAlbum';
-import Billboard from './Billboard/Billboard'
+import Billboard from './Billboard/Billboard';
+import Login from './Login/Login'
 class Recommend extends Component {
     constructor(props) {
         super(props);
@@ -18,7 +19,9 @@ class Recommend extends Component {
                         <NewAlbum />
                         <Billboard/>
                     </div>
-                    <div className="right-box">right-box</div>
+                    <div className="right-box">
+                        <Login/>
+                    </div>
                 </div>
             </div>
             )
