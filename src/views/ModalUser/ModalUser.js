@@ -1,4 +1,4 @@
-import React ,{Component} from 'react';
+﻿import React ,{Component} from 'react';
 import {Modal} from 'antd';
 
 class ModalUser extends Component{
@@ -16,7 +16,7 @@ class ModalUser extends Component{
         }
         return (
            <Modal {...setting} >
-               asdas
+               asdasmd
            </Modal>
         )
     }
