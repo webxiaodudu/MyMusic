@@ -2,7 +2,8 @@ import React ,{Component}from 'react';
 import  { Row, Col,Icon,Input,Button,Menu,Avatar,Dropdown} from 'antd';
 import {connect} from 'react-redux';
 import{toggleSubmenu} from '../../redux/submenu.reducer';
-import{open,close} from '../../redux/openModal.reducer'
+import{open,close} from '../../redux/openModal.reducer';
+import {userLoginOut} from '../../redux/Login.reducer'
 import {style} from './headerStyle';
 import {Link,withRouter}from 'react-router-dom';
 import SubMenu from '../Submenu/Submenu';
@@ -21,20 +22,24 @@ const  logmenu=(open)=>{
   </Menu>)
 }
 
-const  logedmenu=(
-    <Menu style={{minWidth: 200} }>
-        <Menu.Item> <Icon type="user" />我的主页</Menu.Item>
-        <Menu.Item><Icon type="message" />我的消息</Menu.Item>
-        <Menu.Item><Icon type="star" />我的等级</Menu.Item>
-        <Menu.Item><Icon type="trophy" />vip会员</Menu.Item>
-        <Menu.Item><Icon type="logout" />退出</Menu.Item>
-  </Menu>
-)
+const  logedmenu=(userLoginOut)=>{
+    return (
+        <Menu style={{minWidth: 200} }  onClick={(e)=>userLoginOut(e)} >
+            <Menu.Item> <Icon type="user" />我的主页</Menu.Item>
+            <Menu.Item><Icon type="message" />我的消息</Menu.Item>
+            <Menu.Item><Icon type="star" />我的等级</Menu.Item>
+            <Menu.Item><Icon type="trophy" />vip会员</Menu.Item>
+            <Menu.Item><Icon type="logout" />退出</Menu.Item>
+        </Menu>
+    )
+}
+    
+
 
 
 @connect(
     state=>state,
-    {toggleSubmenu,open}
+    {toggleSubmenu,open,userLoginOut}
 )
 @withRouter
 class Header extends Component {
@@ -107,7 +112,7 @@ class Header extends Component {
     render(){
        
        const {LoginReducer}=this.props;
-
+        
         const navList=this.state.navlist.map((item)=>{
 
             return <li key={item.id} className={item.isActive ? 'active' : ''}
@@ -147,7 +152,7 @@ class Header extends Component {
                                 <Button ghost ><Icon type="video-camera" />视频投稿</Button>
                             </span>
                             <span className="loginMenu">
-                            <Dropdown overlay={LoginReducer.isLogin ? logedmenu : logmenu(this.props.open)}>
+                            <Dropdown overlay={LoginReducer.isLogin ? logedmenu(this.props.userLoginOut) : logmenu(this.props.open)}>
                                 <Avatar icon="user" src={LoginReducer.isLogin ? LoginReducer.profile.avatarUrl:''}/>
                               </Dropdown> 
                             </span>

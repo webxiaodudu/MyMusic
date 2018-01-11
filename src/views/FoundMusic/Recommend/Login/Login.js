@@ -11,6 +11,7 @@ class Login extends Component{
 
     render()
     {
+        console.log(this.props)
         
         const login=(
             <div className="Login-pannal" style={{backgroundImage:'-webkit-linear-gradient(top,#fff,#ddd)',borderTop:'1px solid #ddd',borderBottom:'1px solid #ddd',padding:20,textAlign:'center'}}>
@@ -26,15 +27,15 @@ class Login extends Component{
                                 <Avatar size="large"  shape="square" src={this.props.isLogin ? this.props.profile.avatarUrl : ''} style={{width:80,height:80}}/>
                             </div>
                             <div className="user-pannal" style={{width:100,height:80,paddingLeft:10}}>
-                                <span className="userName" style={{fontWeight:'bold',marginLeft:10,display:'block'}}>zhangliwen</span>
+                                <span className="userName" style={{fontWeight:'bold',marginLeft:10,display:'block'}}>{this.props.isLogin ? this.props.profile.nickname:''}</span>
                                 <span style={{display:'block'}}><Button type="primary" size="small">签到</Button></span>
                             </div>
                         </div>
                         <div className="login-bottom" style={{height:30}}>
                             <ul>
-                                <li><a href="javascript:;"><span>0</span><span>动态</span></a></li>
-                                <li><a href="javascript:;"><span>0</span><span>关注</span></a></li>
-                                <li><a href="javascript:;"><span>0</span><span>粉丝</span></a></li>
+                                <li><a href="javascript:;"><span>{this.props.isLogin ? this.props.profile.eventCount:0}</span><span>动态</span></a></li>
+                                <li><a href="javascript:;"><span>{this.props.isLogin ? this.props.profile.follows:0}</span><span>关注</span></a></li>
+                                <li><a href="javascript:;"><span>{this.props.isLogin ? this.props.profile.followeds:0}</span><span>粉丝</span></a></li>
                             </ul>
                         </div>
                     </div>
