@@ -23,7 +23,7 @@ export function userLogin (closeModal,{phone,password}){
         .then((res)=>{
           //console.log(res.data);
           //this.props.onCancel();
-          const {id}=res.data.account
+          const {id}=res.data.account;//获取用户ID
           axios.get(`/user/detail?uid=${id}`)
           .then((resProfile)=>{
             dispatch({type:Login,payload:resProfile.data});
