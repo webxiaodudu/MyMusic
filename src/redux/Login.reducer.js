@@ -18,7 +18,7 @@ export function userLogin (closeModal,{phone,password}){
     return (dispatch)=>{
         axios.get(`/login/cellphone?phone=${phone}&password=${password}`)
         .then((res)=>{
-         // console.log(res.data);
+          console.log(res.data);
           //this.props.onCancel();
           dispatch({type:Login,payload:res.data})
           closeModal();
