@@ -1,6 +1,9 @@
 import {combineReducers} from 'redux';
 import {submenuReducer}from './submenu.reducer';
-
+import {openModalReducer}from './openModal.reducer';
+import {LoginReducer}from './Login.reducer'
 export default combineReducers({
-    submenuReducer
+    submenuReducer,
+    openModalReducer,
+    LoginReducer,
 })

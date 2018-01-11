@@ -1,29 +1,40 @@
 import React ,{Component}from 'react';
 import  { Row, Col,Icon,Input,Button,Menu,Avatar,Dropdown} from 'antd';
 import {connect} from 'react-redux';
-import{toggleSubmenu} from '../../redux/submenu.reducer'
+import{toggleSubmenu} from '../../redux/submenu.reducer';
+import{open,close} from '../../redux/openModal.reducer'
 import {style} from './headerStyle';
 import {Link,withRouter}from 'react-router-dom';
-//import { withRouter } from 'react-router';
 import SubMenu from '../Submenu/Submenu';
 const {Search}=Input;
 
 
-const  logmenu=(
+const  logmenu=(open)=>{
+   
+    return(
+    <Menu style={{minWidth: 200}}  onClick={(e)=>open(e)}>
+        <Menu.Item className="phone"> <Icon type="mobile" />手机号登录</Menu.Item>
+        <Menu.Item className="weixin"><Icon type="wechat" />微信登录</Menu.Item>
+        <Menu.Item className="qq"><Icon type="qq" />QQ登录</Menu.Item>
+        <Menu.Item className="weibo"><Icon type="weibo" />新浪微博登录</Menu.Item>
+        <Menu.Item className="mail"><Icon type="mail" />网移邮箱登陆</Menu.Item>
+  </Menu>)
+}
+
+const  logedmenu=(
     <Menu style={{minWidth: 200} }>
-        <Menu.Item> <Icon type="mobile" />手机号登录</Menu.Item>
-        <Menu.Item><Icon type="wechat" />微信登录</Menu.Item>
-        <Menu.Item><Icon type="qq" />QQ登录</Menu.Item>
-        <Menu.Item><Icon type="weibo" />新浪微博登录</Menu.Item>
-        <Menu.Item><Icon type="mail" />网移邮箱登陆</Menu.Item>
+        <Menu.Item> <Icon type="user" />我的主页</Menu.Item>
+        <Menu.Item><Icon type="message" />我的消息</Menu.Item>
+        <Menu.Item><Icon type="star" />我的等级</Menu.Item>
+        <Menu.Item><Icon type="trophy" />vip会员</Menu.Item>
+        <Menu.Item><Icon type="logout" />退出</Menu.Item>
   </Menu>
 )
 
 
-
 @connect(
-    state=>state.submenuReducer,
-    {toggleSubmenu}
+    state=>state,
+    {toggleSubmenu,open}
 )
 @withRouter
 class Header extends Component {
@@ -90,11 +101,13 @@ class Header extends Component {
          });
          this.setState({navlist});
        this.props.history.push(to)
-         
+   
     }
     
     render(){
-    
+       
+       const {LoginReducer}=this.props;
+
         const navList=this.state.navlist.map((item)=>{
 
             return <li key={item.id} className={item.isActive ? 'active' : ''}
@@ -134,14 +147,14 @@ class Header extends Component {
                                 <Button ghost ><Icon type="video-camera" />视频投稿</Button>
                             </span>
                             <span className="loginMenu">
-                            <Dropdown overlay={logmenu}>
-                                <Avatar icon="user" />
+                            <Dropdown overlay={LoginReducer.isLogin ? logedmenu : logmenu(this.props.open)}>
+                                <Avatar icon="user" src={LoginReducer.isLogin ? LoginReducer.profile.avatarUrl:''}/>
                               </Dropdown> 
                             </span>
                         </div>
                     </Col>
                 </Row>
-                 { this.props.isShow ? <SubMenu /> : ''} 
+                 { this.props.submenuReducer.isShow ? <SubMenu /> : ''} 
             </header>
         )
     }
