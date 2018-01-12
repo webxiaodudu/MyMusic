@@ -3,7 +3,9 @@ import { ForcusImg} from './ForcusImg/ForcusImg';
 import HotRecommend from './HotRecommend/HotRecommend';
 import NewAlbum from './NewAlbum/NewAlbum';
 import Billboard from './Billboard/Billboard';
-import Login from './Login/Login'
+import Login from './Login/Login';
+import Siger from './Siger/Singer';
+import HotRadioStation from './HotRadioStation/HotRadioStation'
 class Recommend extends Component {
     constructor(props) {
         super(props);
@@ -21,6 +23,8 @@ class Recommend extends Component {
                     </div>
                     <div className="right-box">
                         <Login/>
+                        <Siger/>
+                        <HotRadioStation />
                     </div>
                 </div>
             </div>

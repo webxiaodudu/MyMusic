@@ -48,13 +48,19 @@ export class ForcusImg extends Component {
     }
 
     beforeChange(oldIndex,newIndex){
-        const {banners} = this.state
+        const {banners} = this.state;
+        if(!banners.length) return
+
         this.setState({currentColor:banners[newIndex].titleColor});
     }
     componentDidMount(){
-        axios.get('/banner').then((res)=>{
-               const {banners}=res.data;
-               this.setState({banners}) 
+        
+        axios.get('/banner?'+new Date().getTime()).then((res)=>{
+            if(res.status==200){
+                const {banners}=res.data;
+                this.setState({banners}) 
+            }
+               
 
         })
     }

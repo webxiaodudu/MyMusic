@@ -19,7 +19,7 @@ ul{
 .clearfix {
     zoom: 1;
     &:after {
-        content: "";
+        content:"";
         display: block;
         clear: both;
     }
@@ -157,6 +157,7 @@ ul{
 .main-body{
     width:980px;
     margin:0 auto;
+    overflow:hidden;
 }
 .left-box{
     width:729px;
@@ -170,6 +171,8 @@ ul{
     border-left:1px solid #dbdbdb;
     border-right:1px solid #dbdbdb;
     float:right;
+    margin-bottom:-1000000px;
+    padding-bottom:1000000px;
 }
 .box{
     .title{
@@ -289,4 +292,18 @@ ul{
   #components-form-demo-normal-login .login-form-button {
     width: 100%;
     margin-top:20px;
+}
+.singer-box{
+    padding:15px;
+    h3{
+        margin:0;
+        padding:0;
+        float:left;
+        
+    }
+    .all{
+        float:right;
+        text-decoration: none;
+    }
+  
 }
