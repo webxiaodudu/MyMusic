@@ -3,10 +3,12 @@ import  { Row, Col,Icon,Input,Button,Menu,Avatar,Dropdown} from 'antd';
 import {connect} from 'react-redux';
 import{toggleSubmenu} from '../../redux/submenu.reducer';
 import{open,close} from '../../redux/openModal.reducer';
-import {userLoginOut} from '../../redux/Login.reducer'
+import {userLoginOut,userLogin} from '../../redux/Login.reducer'
 import {style} from './headerStyle';
 import {Link,withRouter}from 'react-router-dom';
 import SubMenu from '../Submenu/Submenu';
+import axios from 'axios'
+
 const {Search}=Input;
 
 
@@ -39,7 +41,7 @@ const  logedmenu=(userLoginOut)=>{
 
 @connect(
     state=>state,
-    {toggleSubmenu,open,userLoginOut}
+    {toggleSubmenu,open,userLoginOut,userLogin}
 )
 @withRouter
 class Header extends Component {
@@ -67,7 +69,14 @@ class Header extends Component {
            
         }
     }
+    componentDidMount(){
+        const isLoginFlag= document.cookie.split(';')[0].split('=')[0]
+        if(isLoginFlag==='__csrf'){
+            this.props.userLogin('',{phone:'15321573907',password:'zlw198526'});
+        }
 
+    
+    }
     navOver(id){
      //鼠标悬停
             const navlist= this.state.navlist.map((item)=>{

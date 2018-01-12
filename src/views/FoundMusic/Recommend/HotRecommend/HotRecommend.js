@@ -7,39 +7,47 @@ class HotRecommend extends Component{
     constructor(props){
         super(props)
         this.state={
-            playlists:[]
+            result:[]
         }
     }
     componentDidMount(){
-        axios.get('/top/playlist?limit=8&order=hot')
+        axios.get('/personalized')
         .then((res)=>{
            
-            const{playlists}=res.data
-            this.setState({playlists})
+            const{result}=res.data
+           
+            this.setState({result})
         })
         .catch((erro)=>{
             console.log(erro)
         })
     }
+    play(id){
+        // console.log(id)//歌单id
+        // axios.get(`/playlist/detail?id=${id}`)//使用歌单详情接
+        // .then((res)=>{
+        //    console.log(res.data)
     
+        // })
+    }
    
     render(){
 
-       const getList=(playlists)=>{//渲染热门推荐列表
+       const getList=(result)=>{//渲染热门推荐列表
          
-            if(!playlists.length){
+            if(!result.length){
                 return (<div className="loading"><Spin size="large" /></div>)
             }
             else{
-               return playlists.map((item,index)=>{
+               return result.map((item,index)=>{
                 
                     if(index<8){
                         return (
                             <Col span={6} style={{paddingTop:10}} key={item.id}>
                                 <Card  
-                                    cover={<img src={item.coverImgUrl} />} 
+                                    cover={<img src={item.picUrl} />} 
                                     bordered={true} 
-                                    actions={[<span><Icon type="customer-service" style={{color:'#c10d0c'}}/>{item.playCount}</span>, <Icon type="play-circle-o" style={{color:'#c10d0c'}} />]}>
+                                    actions={[<span><Icon type="customer-service" style={{color:'#c10d0c'}}/>{item.playCount}</span>, <Icon type="play-circle-o" style={{color:'#c10d0c'}} onClick={()=>this.play(item.id)}/>]}>
                                     <Meta description={(<a href='javascript:;'>{item.name}</a>)} style={{maxHeight:42}}/>
                                 </Card>
                             </Col>
@@ -72,7 +80,7 @@ class HotRecommend extends Component{
                 </h2>
 
                 <Row gutter={12} type="flex" justify="space-between" >
-                        {getList(this.state.playlists)}
+                        {getList(this.state.result)}
                 </Row>
             </div>
         )

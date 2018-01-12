@@ -11,7 +11,7 @@ class Login extends Component{
 
     render()
     {
-        console.log(this.props)
+       // console.log(this.props)
         
         const login=(
             <div className="Login-pannal" style={{backgroundImage:'-webkit-linear-gradient(top,#fff,#ddd)',borderTop:'1px solid #ddd',borderBottom:'1px solid #ddd',padding:20,textAlign:'center'}}>
