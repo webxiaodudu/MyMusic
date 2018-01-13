@@ -16,7 +16,7 @@ class Login extends Component{
         const login=(
             <div className="Login-pannal" style={{backgroundImage:'-webkit-linear-gradient(top,#fff,#ddd)',borderTop:'1px solid #ddd',borderBottom:'1px solid #ddd',padding:20,textAlign:'center'}}>
                 <p style={{fontSize:12}}>登录MyMusic云音乐，可以享受无限收藏的乐趣，并且无限同步到手机</p>
-                <Button type="danger" className="loginOpen" size="large" onClick={e=>this.props.open(e)}>登录</Button>
+                <Button type="primary" className="loginOpen" size="large" onClick={e=>this.props.open(e)}>登录</Button>
             </div>
         )
     

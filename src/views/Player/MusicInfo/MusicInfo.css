@@ -1,0 +1,19 @@
+.info-box {
+  float: left;
+  padding: 0 10px;
+}
+.info-box .m-info {
+  float: left;
+  line-height: 45px;
+}
+.info-box .m-name,
+.info-box .singer-name {
+  font-weight: bold;
+  color: #333;
+  font-size: 12px;
+  display: inline-block;
+  margin: 0 10px;
+}
+.info-box .singer-name {
+  font-weight: normal;
+}

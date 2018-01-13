@@ -10,7 +10,7 @@ import {createStore,compose,applyMiddleware}from 'redux';
 import {Provider} from 'react-redux';
 import  reducers from '../redux/index.reducer';
 import thunk from 'redux-thunk';
-
+import Player from './Player/Player'
 
 const store=createStore(reducers,compose(
   applyMiddleware(thunk),
@@ -29,6 +29,7 @@ class App extends Component {
           <Route path='/MyMusic' component={MyMusic} />
           <Route path='/Friend' component={Friend} />
           <ModalUser/>
+          <Player />
           <Foot/>
         </div>
       </BrowserRouter>
