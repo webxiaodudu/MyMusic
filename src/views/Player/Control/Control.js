@@ -8,9 +8,11 @@ class Control extends Component{
         return(
             <div className="Control-box">
                 <ButtonGroup size="large">
-                    <Button ><Icon type="step-backward" style={{ fontSize: 18, color: '#08c' }}/></Button>
-                    <Button ><Icon type="play-circle" style={{ fontSize: 18, color: '#08c' }} /></Button>
-                    <Button ><Icon type="step-forward" style={{ fontSize: 18, color: '#08c' }}/></Button>
+                    <Button onClick={this.props.onPrev}><Icon type="step-backward" style={{ fontSize: 18, color: '#08c' }}/></Button>
+                    <Button 
+                        onClick={this.props.onClick}>
+                        {this.props.isPlay  ?<Icon type="pause-circle-o" style={{ fontSize: 18, color: '#08c' }} /> : <Icon type="play-circle" style={{ fontSize: 18, color: '#08c' }} /> }</Button>
+                    <Button onClick={this.props.onNext}><Icon type="step-forward" style={{ fontSize: 18, color: '#08c' }}/></Button>
                 </ButtonGroup>
                 
             </div>

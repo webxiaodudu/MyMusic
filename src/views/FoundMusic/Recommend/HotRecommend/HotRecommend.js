@@ -2,7 +2,14 @@ import React, { Component } from 'react';
 import { Card,Icon ,Row,Col,Spin } from 'antd';
 import defualtImg from '../../../../assets/image/changpian.jpg';
 import axios from 'axios'
+import {connect} from 'react-redux';
+import {GetTracks} from '../../../../redux/playList.reducer'
 const { Meta } = Card;
+
+@connect(
+    state=>state,
+    {GetTracks}
+)
 class HotRecommend extends Component{
     constructor(props){
         super(props)
@@ -23,12 +30,13 @@ class HotRecommend extends Component{
         })
     }
     play(id){
-        // console.log(id)//歌单id
+         //console.log(id)//歌单id
         // axios.get(`/playlist/detail?id=${id}`)//使用歌单详情接
         // .then((res)=>{
         //    console.log(res.data)
     
         // })
+        this.props.GetTracks(id,true);
     }
    
     render(){
@@ -40,7 +48,7 @@ class HotRecommend extends Component{
             }
             else{
                return result.map((item,index)=>{
-                
+                   
                     if(index<8){
                         return (
                             <Col span={6} style={{paddingTop:10}} key={item.id}>
