@@ -1,0 +1,31 @@
+.volume-box {
+  float: left;
+  padding-top: 10px;
+  padding-left: 10px;
+  position: relative;
+}
+.volume-box .voice {
+  font-size: 18px;
+  cursor: pointer;
+}
+.voice-pannal {
+  width: 30px;
+  height: 100px;
+  padding-top: 20px;
+  background: #ddd;
+}
+.voice-pannal .voice-slot {
+  width: 5px;
+  height: 80px;
+  margin: 0 auto;
+  background: #eee;
+  position: relative;
+}
+.voice-pannal .voice-control {
+  background: #00ff4c;
+  height: 50px;
+  position: absolute;
+  bottom: 0;
+  width: 5px;
+  left: 0;
+}

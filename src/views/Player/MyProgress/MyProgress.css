@@ -1,6 +1,5 @@
 .progress-box {
   float: left;
-  width: 600px;
   margin-top: 10px;
 }
 .current-time,
@@ -11,4 +10,7 @@
 }
 .duration-time {
   display: inline-block;
+}
+.progress {
+  cursor: pointer;
 }
