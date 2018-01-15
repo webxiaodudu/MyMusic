@@ -23,13 +23,13 @@
 }
 .voice-pannal .voice-control {
   background: #00ff4c;
-  height: 50px;
+  height: 130px;
   position: absolute;
   bottom: 0;
   width: 5px;
   left: 0;
 }
-.voice-pannal .voice-control .point-bar {
+.voice-pannal .point-bar {
   position: absolute;
   border-radius: 50%;
   border: 4px solid #4b0808;
@@ -37,6 +37,7 @@
   width: 14px;
   height: 14px;
   left: 0;
-  top: -11px;
+  top: 0px;
   margin-left: -4px;
+  z-index: 1;
 }
