@@ -45,12 +45,7 @@ class Player extends Component {
     }
 
   play(){//切换播放暂停
-        // this.setState((prevState)=>{
-        //     return {isPlay:!prevState.isPlay}
-        // },function(){
-            
-        //     this.state.isPlay ? this.audio.play():this.audio.pause();
-        // })
+        
 
         if(this.props.isPlay){
             this.props.StopMusic();
@@ -93,13 +88,7 @@ class Player extends Component {
         
   }
  
-//   autoPlay(){
-//       if(this.props.autoPlay){
-//           this.setState({isPlay:true,index:0},()=>{
-//                 this.audio.play()
-//           })
-//       }
-//   }
+
   changeCurrent(e){
    
     const oProgress=document.querySelector('.ant-progress-outer');
@@ -110,6 +99,7 @@ class Player extends Component {
     this.audio.currentTime=iCur;
     this.props.PlayStart();
   }
+
     render(){
          
         return (

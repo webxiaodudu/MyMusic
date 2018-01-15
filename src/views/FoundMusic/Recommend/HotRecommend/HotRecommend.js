@@ -30,7 +30,7 @@ class HotRecommend extends Component{
         })
     }
     play(id){
-         console.log(id)//歌单id
+        // console.log(id)//歌单id
         // axios.get(`/playlist/detail?id=${id}`)//使用歌单详情接
         // .then((res)=>{
         //    console.log(res.data)
