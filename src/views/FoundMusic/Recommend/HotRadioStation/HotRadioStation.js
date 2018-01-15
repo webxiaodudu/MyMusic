@@ -2,21 +2,7 @@ import React ,{Component}from 'react';
 import { List, Avatar ,Button} from 'antd';
 import axios from 'axios';
 
-const data = [
-    {
-      title: 'Ant Design Title 1',
-    },
-    {
-      title: 'Ant Design Title 2',
-    },
-    {
-      title: 'Ant Design Title 3',
-    },
-    {
-      title: 'Ant Design Title 4',
-    },
-  ];
-  
+
 
 
 class HotRadioStation extends Component {

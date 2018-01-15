@@ -6,12 +6,12 @@ import Operate from './Operate/Operate';
 import Volume from './Volume/Volume';
 import './Player.less';
 import {connect} from 'react-redux';
-import {GetTracks,StopMusic,PlayMusic} from '../../redux/playList.reducer'
+import {GetTracks,PlayStart,StopMusic} from '../../redux/playList.reducer'
 import axios from 'axios'
 
 @connect(
     state=>state.PlayReducer,//播放列表
-    {GetTracks,StopMusic,PlayMusic}
+    {GetTracks,PlayStart,StopMusic}
 )
 class Player extends Component {
 
@@ -45,12 +45,21 @@ class Player extends Component {
     }
 
   play(){//切换播放暂停
-        this.setState((prevState)=>{
-            return {isPlay:!prevState.isPlay}
-        },function(){
+        // this.setState((prevState)=>{
+        //     return {isPlay:!prevState.isPlay}
+        // },function(){
             
-            this.state.isPlay ? this.audio.play():this.audio.pause();
-        })
+        //     this.state.isPlay ? this.audio.play():this.audio.pause();
+        // })
+
+        if(this.props.isPlay){
+            this.props.StopMusic();
+            this.audio.pause()
+        }
+        else{
+            this.props.PlayStart();
+            this.audio.play()
+        }
   }
   playOver(){//播完一首歌后播放下一首
       if(this.state.index==this.props.data.length-1)return
@@ -61,13 +70,14 @@ class Player extends Component {
         })
 
         
-  }
+   }
  
   next(){//跳到下一首
     if(this.state.index==this.props.data.length-1)return
         this.setState((prevState)=>{
             return {index:++prevState.index,isPlay:true}
         },function(){
+            this.props.PlayStart();
             this.audio.play()
         })
        
@@ -77,18 +87,19 @@ class Player extends Component {
         this.setState((prevState)=>{
             return {index:--prevState.index,isPlay:true}
         },function(){
+            this.props.PlayStart();
             this.audio.play()
         })
         
   }
  
-  autoPlay(){
-      if(this.props.autoPlay){
-          this.setState({isPlay:true,index:0},()=>{
-                this.audio.play()
-          })
-      }
-  }
+//   autoPlay(){
+//       if(this.props.autoPlay){
+//           this.setState({isPlay:true,index:0},()=>{
+//                 this.audio.play()
+//           })
+//       }
+//   }
   changeCurrent(e){
    
     const oProgress=document.querySelector('.ant-progress-outer');
@@ -96,14 +107,15 @@ class Player extends Component {
     
     let scale=posX/oProgress.clientWidth;
     let iCur=scale*this.audio.duration;
-    this.audio.currentTime=iCur
+    this.audio.currentTime=iCur;
+    this.props.PlayStart();
   }
     render(){
          
         return (
         <div className="PlayerContainer">
             <div className="play-box">
-                 <Control onClick={()=>this.play()} isPlay={this.state.isPlay} onNext={()=>this.next()} onPrev={()=>this.prev()}/>
+                 <Control onClick={()=>this.play()} isPlay={this.props.isPlay} onNext={()=>this.next()} onPrev={()=>this.prev()}/>
                  <MusicInfo infos={this.props.tracks?this.props.tracks:[]} Index={this.state.index}/>
                  <MyProgress onClick={(e)=>this.changeCurrent(e)} duration={this.state.duration} currentTime={this.state.currentTime}/>
                  <Operate/> 

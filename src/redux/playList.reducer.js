@@ -1,16 +1,23 @@
 import axios from 'axios'
 const GetTrackList='GetTrackList';
-
+const Play="Play";
+const Stop="Stop";
 const init={
     data:[],
-
+    isPlay:false
 }
 export function PlayReducer(state=init,action){
 
     if(action.type===GetTrackList){
         return {...state,...action.payload}
     }
-    
+    if(action.type===Play){
+        return{...state,isPlay:true}
+    }
+    if(action.type===Stop){
+        return {...state,isPlay:false}
+    }
+
     return state;
 }
 
@@ -41,5 +48,16 @@ export function GetTracks(id,autoPlayFlag){
            })
     
         })
+    }
+}
+
+export function  PlayStart(){
+    return dispatch=>{
+        dispatch({type:Play});
+    }
+}
+export function  StopMusic(){
+    return dispatch=>{
+        dispatch({type:Stop});
     }
 }

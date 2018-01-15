@@ -3,12 +3,12 @@ import { Card,Icon ,Row,Col,Spin } from 'antd';
 import defualtImg from '../../../../assets/image/changpian.jpg';
 import axios from 'axios'
 import {connect} from 'react-redux';
-import {GetTracks} from '../../../../redux/playList.reducer'
+import {GetTracks,PlayStart} from '../../../../redux/playList.reducer'
 const { Meta } = Card;
 
 @connect(
     state=>state,
-    {GetTracks}
+    {GetTracks,PlayStart}
 )
 class HotRecommend extends Component{
     constructor(props){
@@ -37,6 +37,17 @@ class HotRecommend extends Component{
     
         // })
         this.props.GetTracks(id,true);
+        this.props.PlayStart();
+        const oAudio=document.querySelector('#audio');
+
+        oAudio.addEventListener('canplaythrough', function(e){
+            oAudio.play();
+        }, false);
+        // setTimeout(function(){
+        //    
+        // },3000)
+       
+
     }
    
     render(){

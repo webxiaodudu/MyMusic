@@ -50,7 +50,7 @@ export class ForcusImg extends Component {
     beforeChange(oldIndex,newIndex){
         const {banners} = this.state;
         if(!banners.length) return
-
+        
         this.setState({currentColor:banners[newIndex].titleColor});
     }
     componentDidMount(){
@@ -67,7 +67,7 @@ export class ForcusImg extends Component {
    renderBanners(){
     const {banners}=this.state
     if(!banners.length)return (<div className="loading"><Spin /></div>);
-    
+            
             const ImgsItem = banners.map((item, i) => {
                  return <div key={item.targetId}><img src={item.pic} /></div>
             })
@@ -76,9 +76,6 @@ export class ForcusImg extends Component {
      
 
     render(){
-
-        
-
         const settings={
         
             autoplaySpeed:3000,
