@@ -6,9 +6,7 @@ class Volume extends Component {
     constructor(props){
         super(props)
     }
-    componentDidMount(){
-       
-    }
+ 
   
     dragVol(){
         const oAudio=document.querySelector('#audio');

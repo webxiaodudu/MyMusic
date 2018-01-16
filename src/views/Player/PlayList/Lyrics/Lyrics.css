@@ -1,0 +1,20 @@
+.Lyrics-box {
+  width: 490px;
+  height: 300px;
+  float: left;
+  background: rgba(0, 0, 0, 0.5);
+  border-top-right-radius: 20px;
+  text-align: center;
+}
+.Lyrics-box .music-title {
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  line-height: 30px;
+  font-size: 16px;
+}
+.Lyrics-box p {
+  line-height: 26px;
+  color: #fff;
+  font-size: 14px;
+}

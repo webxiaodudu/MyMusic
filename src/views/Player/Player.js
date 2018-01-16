@@ -6,8 +6,10 @@ import Operate from './Operate/Operate';
 import Volume from './Volume/Volume';
 import './Player.less';
 import {connect} from 'react-redux';
+import PlayList from './PlayList/PlayList'
 import {GetTracks,PlayStart,StopMusic} from '../../redux/playList.reducer'
-import axios from 'axios'
+import axios from 'axios';
+import TweenOne from 'rc-tween-one';
 
 @connect(
     state=>state.PlayReducer,//播放列表
@@ -21,12 +23,24 @@ class Player extends Component {
             isPlay:false,
             index:0,
             currentTime:0,
-            duration:0
+            duration:0,
+            moment: null,
+            paused: true,
+            reverse: true,
+      
         }
-        
+        this.moment = null;
+        this.animation = { top: '-300px', duration: 800,ease:'easeOutBounce' };
         
     }
 
+
+      onOpen = () => {
+         
+        this.setState((prevState)=>{
+            return {paused: false, moment: null,reverse: !prevState.reverse,}
+        })
+      }
     componentDidMount(){
         axios.get('/personalized')
         .then((res)=>{
@@ -61,6 +75,7 @@ class Player extends Component {
         this.setState((prevState)=>{
             return {index:++prevState.index}
         },function(){
+          
             this.audio.play()
         })
 
@@ -103,15 +118,18 @@ class Player extends Component {
     render(){
          
         return (
-        <div className="PlayerContainer">
-            <div className="play-box">
-                 <Control onClick={()=>this.play()} isPlay={this.props.isPlay} onNext={()=>this.next()} onPrev={()=>this.prev()}/>
-                 <MusicInfo infos={this.props.tracks?this.props.tracks:[]} Index={this.state.index}/>
-                 <MyProgress onClick={(e)=>this.changeCurrent(e)} duration={this.state.duration} currentTime={this.state.currentTime}/>
-                 <Operate/> 
-                 <Volume/>
+        <div className="PlayerWrap">
+            <div className="PlayerContainer">
+                <div className="play-box">
+                    <Control onClick={()=>this.play()} isPlay={this.props.isPlay} onNext={()=>this.next()} onPrev={()=>this.prev()}/>
+                    <MusicInfo infos={this.props.tracks?this.props.tracks:[]} Index={this.state.index}/>
+                    <MyProgress onClick={(e)=>this.changeCurrent(e)} duration={this.state.duration} currentTime={this.state.currentTime}/>
+                    <Operate onOpen={()=>this.onOpen()}/> 
+                    <Volume/>
+                </div>
+                <audio  onEnded={()=>this.playOver()} ref={(audio)=>{this.audio=audio;}} src={this.props.data.length ? this.props.data[this.state.index].url:''} id="audio"></audio>
             </div>
-            <audio  onEnded={()=>this.playOver()} ref={(audio)=>{this.audio=audio;}} src={this.props.data.length ? this.props.data[this.state.index].url:''} id="audio"></audio>
+            <TweenOne animation={this.animation}  paused={this.state.paused} style={{position:'absolute',left:181.5,top:0}} reverse={this.state.reverse} moment={this.state.moment}><PlayList/></TweenOne>
         </div>
         )
     }

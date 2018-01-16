@@ -5,6 +5,10 @@
 .info-box .m-info {
   float: left;
   line-height: 45px;
+  width: 100px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .info-box .m-name,
 .info-box .singer-name {
