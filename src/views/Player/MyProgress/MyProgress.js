@@ -30,7 +30,6 @@ class MyProgress extends Component {
 
         return str=addZero(h)+':'+addZero(m)+':'+addZero(s);
 
-
     }
     render(){
       

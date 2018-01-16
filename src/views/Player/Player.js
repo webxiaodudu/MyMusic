@@ -46,11 +46,15 @@ class Player extends Component {
         .then((res)=>{
             const{result}=res.data;
             this.props.GetTracks(result[0].id);
-        })
-       
-        this.timer=setInterval(()=>{
-            this.tick();
-        },30)
+        });
+        const that=this;
+       (function start(){
+            requestAnimationFrame(start);
+            that.tick();
+       })()
+        // this.timer=setInterval(()=>{
+        //     this.tick();
+        // },30)
         
     }
 componentWillReceiveProps(nextProps){//获取歌词
