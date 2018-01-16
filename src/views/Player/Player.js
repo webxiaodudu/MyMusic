@@ -103,7 +103,13 @@ class Player extends Component {
         
   }
  
-
+  goPlay(index){
+      this.setState({index},
+            function(){
+                this.props.PlayStart();
+                this.audio.play()
+            });
+  }
   changeCurrent(e){
    
     const oProgress=document.querySelector('.ant-progress-outer');
@@ -129,7 +135,7 @@ class Player extends Component {
                 </div>
                 <audio  onEnded={()=>this.playOver()} ref={(audio)=>{this.audio=audio;}} src={this.props.data.length ? this.props.data[this.state.index].url:''} id="audio"></audio>
             </div>
-            <TweenOne animation={this.animation}  paused={this.state.paused} style={{position:'absolute',left:181.5,top:0}} reverse={this.state.reverse} moment={this.state.moment}><PlayList/></TweenOne>
+            <TweenOne animation={this.animation}  paused={this.state.paused} style={{position:'absolute',left:181.5,top:0}} reverse={this.state.reverse} moment={this.state.moment}><PlayList goPlay={(index)=>this.goPlay(index)} iCurIndex={this.state.index}/></TweenOne>
         </div>
         )
     }
