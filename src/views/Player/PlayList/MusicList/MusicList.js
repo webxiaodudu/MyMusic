@@ -33,12 +33,7 @@ class MusicList extends Component{
               musicTracks:[]
           }
       }
-      componentDidMount(){
-          this.initTracks();
-      }
-      initTracks(){
-         
-      }
+ 
     render(){
        
         return (

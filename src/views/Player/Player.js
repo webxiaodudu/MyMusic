@@ -7,13 +7,13 @@ import Volume from './Volume/Volume';
 import './Player.less';
 import {connect} from 'react-redux';
 import PlayList from './PlayList/PlayList'
-import {GetTracks,PlayStart,StopMusic} from '../../redux/playList.reducer'
+import {GetTracks,PlayStart,StopMusic,MusicLyric} from '../../redux/playList.reducer'
 import axios from 'axios';
 import TweenOne from 'rc-tween-one';
 
 @connect(
     state=>state.PlayReducer,//播放列表
-    {GetTracks,PlayStart,StopMusic}
+    {GetTracks,PlayStart,StopMusic,MusicLyric}
 )
 class Player extends Component {
 
@@ -53,10 +53,14 @@ class Player extends Component {
         },30)
         
     }
+componentWillReceiveProps(nextProps){//获取歌词
 
-    tick(){
+    nextProps.MusicLyric(nextProps.tracksIds[this.state.index]);
+
+}
+tick(){
         this.setState({currentTime:this.audio.currentTime,duration:this.audio.duration})
-    }
+}
 
   play(){//切换播放暂停
         
@@ -75,7 +79,7 @@ class Player extends Component {
         this.setState((prevState)=>{
             return {index:++prevState.index}
         },function(){
-          
+            this.props.PlayStart();
             this.audio.play()
         })
 
@@ -88,7 +92,11 @@ class Player extends Component {
             return {index:++prevState.index,isPlay:true}
         },function(){
             this.props.PlayStart();
-            this.audio.play()
+            this.audio.addEventListener('canplaythrough', function(e){
+                this.play();
+            }, false);
+            //this.audio.play()
+           
         })
        
   }
@@ -98,19 +106,24 @@ class Player extends Component {
             return {index:--prevState.index,isPlay:true}
         },function(){
             this.props.PlayStart();
-            this.audio.play()
+            this.audio.addEventListener('canplaythrough', function(e){
+                this.play();
+            }, false);
+            //this.audio.play()
         })
         
   }
  
-  goPlay(index){
+  goPlay(index){//点击播放器里的列表中的歌曲播放对应歌曲
       this.setState({index},
             function(){
                 this.props.PlayStart();
-                this.audio.play()
+                this.audio.addEventListener('canplaythrough', function(e){
+                    this.play();
+                }, false);
             });
   }
-  changeCurrent(e){
+  changeCurrent(e){//点击播放进度
    
     const oProgress=document.querySelector('.ant-progress-outer');
     const posX=e.pageX-oProgress.getBoundingClientRect().left;
@@ -135,7 +148,7 @@ class Player extends Component {
                 </div>
                 <audio  onEnded={()=>this.playOver()} ref={(audio)=>{this.audio=audio;}} src={this.props.data.length ? this.props.data[this.state.index].url:''} id="audio"></audio>
             </div>
-            <TweenOne animation={this.animation}  paused={this.state.paused} style={{position:'absolute',left:181.5,top:0}} reverse={this.state.reverse} moment={this.state.moment}><PlayList goPlay={(index)=>this.goPlay(index)} iCurIndex={this.state.index}/></TweenOne>
+            <TweenOne animation={this.animation}  paused={this.state.paused} style={{position:'absolute',left:181.5,top:0}} reverse={this.state.reverse} moment={this.state.moment}><PlayList tracksIds={this.props.tracksIds} goPlay={(index)=>this.goPlay(index)} iCurIndex={this.state.index} currentTime={this.state.currentTime}/></TweenOne>
         </div>
         )
     }

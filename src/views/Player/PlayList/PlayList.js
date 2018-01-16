@@ -10,15 +10,13 @@ class PlayList extends  Component {
         super(props);
         
     }
-    componentDidMount(){
-        
-    }
+
     render(){
        
         return (
             <div className="PlayList-box">
                 <MusicList go={this.props.goPlay} mIndex={this.props.iCurIndex} tracks={this.props.tracks? this.props.tracks:''}/>
-                <Lyrics/>
+                <Lyrics currentTime={this.props.currentTime} mIndex={this.props.iCurIndex}/>
             </div>
         )
     }

@@ -2,9 +2,12 @@ import axios from 'axios'
 const GetTrackList='GetTrackList';
 const Play="Play";
 const Stop="Stop";
+const GetLyric="GetLyric"
+
 const init={
     data:[],
-    isPlay:false
+    isPlay:false,
+    lrc:{}
 }
 export function PlayReducer(state=init,action){
 
@@ -17,7 +20,9 @@ export function PlayReducer(state=init,action){
     if(action.type===Stop){
         return {...state,isPlay:false}
     }
-
+    if(action.type===GetLyric){
+        return {...state,...action.payload}
+    }
     return state;
 }
 
@@ -43,11 +48,23 @@ export function GetTracks(id,autoPlayFlag){
                 })
                 arr.push(...music)
               }
+             
               res.data.data=arr;
-               dispatch({type:GetTrackList,payload:{...res.data,...tracksInfo,...autoPlay}})
+               dispatch({type:GetTrackList,payload:{...res.data,...tracksInfo,...autoPlay,tracksIds}})
            })
     
         })
+    }
+}
+
+
+export function MusicLyric(id){
+   
+    return dispatch=>{
+        axios.get(`/lyric?id=${id}`).then((res)=>{
+            dispatch({type:GetLyric,payload:{lrc:res.data.lrc}});
+        })
+       
     }
 }
 
