@@ -57,8 +57,12 @@ class Player extends Component {
         // },30)
         
     }
-componentWillReceiveProps(nextProps){//获取歌词
-
+componentWillReceiveProps(nextProps){
+    if(!this.props.tracksIds)return;
+   
+  
+   if(nextProps.tracksIds[this.state.index]==this.props.tracksIds[this.state.index])return;
+ 
     nextProps.MusicLyric(nextProps.tracksIds[this.state.index]);
 
 }
