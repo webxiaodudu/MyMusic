@@ -46,6 +46,9 @@ class Player extends Component {
         .then((res)=>{
             const{result}=res.data;
             this.props.GetTracks(result[0].id);
+            setTimeout(()=>{
+                this.props.MusicLyric(this.props.tracksIds[0])
+            },1000)
         });
         const that=this;
        (function start(){
@@ -58,8 +61,10 @@ class Player extends Component {
         
     }
 componentWillReceiveProps(nextProps){
+
+    
     if(!this.props.tracksIds)return;
-   
+    console.log(nextProps.tracksIds[this.state.index]+'|'+this.props.tracksIds[this.state.index])
   
    if(nextProps.tracksIds[this.state.index]==this.props.tracksIds[this.state.index])return;
  
@@ -83,18 +88,23 @@ tick(){
         }
   }
   playOver(){//播完一首歌后播放下一首
+    const {MusicLyric,tracksIds} = this.props;
+    const that=this
       if(this.state.index==this.props.data.length-1)return
         this.setState((prevState)=>{
             return {index:++prevState.index}
         },function(){
             this.props.PlayStart();
-            this.audio.play()
+            this.audio.play();
+            MusicLyric(tracksIds[that.state.index]);
         })
 
         
    }
  
   next(){//跳到下一首
+    const {MusicLyric,tracksIds} = this.props;
+    const that=this
     if(this.state.index==this.props.data.length-1)return
         this.setState((prevState)=>{
             return {index:++prevState.index,isPlay:true}
@@ -102,6 +112,7 @@ tick(){
             this.props.PlayStart();
             this.audio.addEventListener('canplaythrough', function(e){
                 this.play();
+                MusicLyric(tracksIds[that.state.index]);
             }, false);
             //this.audio.play()
            
@@ -109,13 +120,16 @@ tick(){
        
   }
   prev(){//跳到前一首
+    const {MusicLyric,tracksIds} = this.props;
+    const that=this
     if(this.state.index==0)return
         this.setState((prevState)=>{
             return {index:--prevState.index,isPlay:true}
         },function(){
             this.props.PlayStart();
             this.audio.addEventListener('canplaythrough', function(e){
-                this.play();
+                this.play(); 
+                MusicLyric(tracksIds[that.state.index]);
             }, false);
             //this.audio.play()
         })
@@ -123,11 +137,16 @@ tick(){
   }
  
   goPlay(index){//点击播放器里的列表中的歌曲播放对应歌曲
+
+    const {MusicLyric,tracksIds} = this.props;
+    //const that=this
+
       this.setState({index},
             function(){
                 this.props.PlayStart();
                 this.audio.addEventListener('canplaythrough', function(e){
                     this.play();
+                    MusicLyric(tracksIds[index]);
                 }, false);
             });
   }
