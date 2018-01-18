@@ -22,9 +22,11 @@ export function userLogin (closeModal,{phone,password}){
         axios.get(`/login/cellphone?phone=${phone}&password=${password}`)
         .then((res)=>{
 
-            var exp = new Date();
-            exp.setDate(exp.getDate() + 1);
-            document.cookie="__csrf=5bc1aed14820f21e9c59cf97651c166b;expires="+exp;
+             var exp = new Date();
+             exp.setDate(exp.getDate() + 1);
+             //;expires=`+exp
+             document.cookie=`phone=${phone};expires=${exp}`;
+             document.cookie=`password=${password};expires=${exp}`
           //console.log(res.data);
           //this.props.onCancel();
           const {id}=res.data.account;//获取用户ID
@@ -48,9 +50,13 @@ export function userLoginOut(e){
     
     return dispatch=>{
         if(e.key==='item_4'){
-            var exp = new Date();
-            exp.setDate(exp.getDate() - 1);
-            document.cookie="__csrf=5bc1aed14820f21e9c59cf97651c166b"+";expires="+exp.toGMTString();
+             var exp = new Date();
+             exp.setDate(exp.getDate() - 1);
+          const cookies= document.cookie.split('; ');
+          cookies.forEach((item,index)=>{
+              document.cookie=item+';expires='+exp;
+          })
+            // console.log(cookies)
             dispatch({type:LoginOut});
         }
         

@@ -70,10 +70,22 @@ class Header extends Component {
         }
     }
     componentDidMount(){
-        const isLoginFlag= document.cookie.split(';')[0].split('=')[0]
-        if(isLoginFlag==='__csrf'){
-            this.props.userLogin('',{phone:'15321573907',password:'zlw198526'});
+        if(document.cookie&&document.cookie.split('; ').length===3){
+            const isLoginFlag =document.cookie.split('; ');
+           
+            this.props.userLogin('',{phone:isLoginFlag[1].split('=')[1],password:isLoginFlag[2].split('=')[1]});
         }
+        
+         //const namePass= isLoginFlag[1].split('&');
+
+         //console.log(document.cookie)
+        //  if(isLoginFlag.length){
+        //      this.props.userLogin('',{phone:namePass[0].split('=')[1],password:namePass[1].split('=')[1]});
+        //  }
+        // axios.get('/login/refresh').then((res)=>{
+        //     console.log(res.data)
+        //     console.log(document.cookie)
+        // })
 
     
     }
