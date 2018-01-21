@@ -64,7 +64,7 @@ componentWillReceiveProps(nextProps){
 
     
     if(!this.props.tracksIds)return;
-    console.log(nextProps.tracksIds[this.state.index]+'|'+this.props.tracksIds[this.state.index])
+  //  console.log(nextProps.tracksIds[this.state.index]+'|'+this.props.tracksIds[this.state.index])
   
    if(nextProps.tracksIds[this.state.index]==this.props.tracksIds[this.state.index])return;
  

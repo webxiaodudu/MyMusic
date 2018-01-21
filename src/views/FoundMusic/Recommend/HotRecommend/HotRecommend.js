@@ -16,6 +16,7 @@ class HotRecommend extends Component{
         this.state={
             result:[]
         }
+        this.prevId=0;
     }
     componentDidMount(){
         axios.get('/personalized')
@@ -36,6 +37,7 @@ class HotRecommend extends Component{
         //    console.log(res.data)
     
         // })
+        if(id===this.prevId)return;
         this.props.GetTracks(id,true);
         this.props.PlayStart();
         const oAudio=document.querySelector('#audio');
@@ -43,6 +45,7 @@ class HotRecommend extends Component{
         oAudio.addEventListener('canplaythrough', function(e){
             oAudio.play();
         }, false);
+        this.prevId=id;
         // setTimeout(function(){
         //    
         // },3000)
